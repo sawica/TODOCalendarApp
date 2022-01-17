@@ -4,7 +4,7 @@ import javax.swing.*;
 
 /* ComboBoxDemo2.java requires no other files. */
 public class CalendarSelect extends JPanel implements ActionListener {
-    static JFrame frame;
+
 
     public CreateCalendar calendar;
     public JLabel result;
@@ -13,7 +13,6 @@ public class CalendarSelect extends JPanel implements ActionListener {
     public Integer MONTH;
     public JComboBox monthsList;
     public JComboBox<Integer> yearsList;
-    public JButton createCalButton;
     public String[] months;
     public Integer[] YEARS;
 
@@ -21,8 +20,8 @@ public class CalendarSelect extends JPanel implements ActionListener {
         months = calendar.months;
         YEARS = calendar.YEARS;
 
-        MONTH = 11;
-        YEAR = 2021;
+        MONTH = 0;
+        YEAR = 2022;
         month = months[MONTH];
 
         monthsList = new JComboBox(months);
@@ -31,12 +30,15 @@ public class CalendarSelect extends JPanel implements ActionListener {
         monthsList.setEditable(true);
         monthsList.setSelectedItem(month);
         monthsList.addActionListener(this);
+        monthsList.setBackground(Color.cyan);
+
         yearsList.setEditable(true);
         yearsList.setSelectedItem(YEAR);
         yearsList.addActionListener(this);
+        yearsList.setBackground(Color.CYAN);
 
         result = new JLabel(month + " " + YEAR);
-
+        result.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
         JPanel selectPanel = new JPanel();
         selectPanel.setLayout(new BoxLayout(selectPanel,
@@ -50,12 +52,6 @@ public class CalendarSelect extends JPanel implements ActionListener {
         selectPanel.add(result);
         selectPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        createCalButton = new JButton("create calendar");
-        createCalButton.setForeground(Color.black);
-        createCalButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        createCalButton.addActionListener(this);
-
-        selectPanel.add(createCalButton);
         selectPanel.add(Box.createRigidArea(new Dimension(0, 20)));
 
         add(selectPanel);
@@ -78,17 +74,15 @@ public class CalendarSelect extends JPanel implements ActionListener {
             YEAR = (Integer) combo.getSelectedItem();
             System.out.println(YEAR);
         }
-        else if (source == createCalButton){
-            calendar = new CreateCalendar(YEAR, MONTH);
-           // System.out.println(YEAR + " " + month);
-            result.setText(month + " " + YEAR);
-            CalendarView xxx=(CalendarView) getParent().getParent();
 
-            xxx.calendarPanel.remove(xxx.calendarTable);
-            xxx.calendarTable = new CalendarTable(calendar);
-            xxx.calendarPanel.add(xxx.calendarTable);
-           System.out.println(xxx.calendarTable+"  ccc");
-        }
+            calendar = new CreateCalendar(YEAR, MONTH);
+            result.setText(month + " " + YEAR);
+            CalendarView calendarView=(CalendarView) getParent().getParent();
+            calendarView.calendarTable.writeCalendar(calendar);
+
+            MyView view = (MyView) calendarView.getParent();
+            //Component myFrame = calendarView.getParent();
+            view.todoPanel.writeTodoList(month, YEAR);
 
     }
 

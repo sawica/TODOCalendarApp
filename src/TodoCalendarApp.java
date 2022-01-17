@@ -25,9 +25,9 @@ import java.util.*;
 public class TodoCalendarApp {
     static Table<String> createCalendar(int year, int month){
         GregorianCalendar calendar = new GregorianCalendar(year, month, 1);
-        int days = calendar.getActualMaximum(Calendar.DATE);
-        int totalWeeks = calendar.getActualMaximum(Calendar.WEEK_OF_MONTH);
-        int startINWeek = calendar.get(Calendar.DAY_OF_WEEK) -7;
+        int days = calendar.getActualMaximum(calendar.DATE);
+        int totalWeeks = calendar.getActualMaximum(calendar.WEEK_OF_MONTH);
+        int startINWeek = calendar.get(calendar.DAY_OF_WEEK) -7;
         final Table<String> table = new Table<>("S", "M", "T", "W", "T", "F", "S");
         table.setCellSelection(true);
 

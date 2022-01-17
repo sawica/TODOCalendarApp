@@ -17,50 +17,61 @@ public class TodoList {
         this.todoList = new LinkedList<>();
 
         readFromFile();
-  //      writeToConsole();
-        todoList.add("upiec ciasto");
-        todoList.add("ubrać choinke");
+        //      writeToConsole();
+//        todoList.add("upiec ciasto");
+//        todoList.add("ubrać choinke");
 //        writeToFile();
 //        readFromFile();
         writeToConsole();
 
     }
+
     public void readFromFile() throws FileNotFoundException {
-        File file = new File("src/todoList"+month+year+".txt");
+        File file = new File("src/todoList" + month + year + ".txt");
         todoList.removeAll(todoList);
-        if(file.exists()){
+        if (file.exists()) {
             Scanner read = new Scanner(file);
 
-            while(read.hasNextLine()){
+            while (read.hasNextLine()) {
                 todoList.add(read.nextLine());
             }
         }
     }
-    public void writeToFile(){
+
+    public void writeToFile() {
         PrintWriter writer = null;
         try {
-            writer = new PrintWriter("src/todoList"+month+year+".txt");
+            writer = new PrintWriter("src/todoList" + month + year + ".txt");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-        for(String todo : todoList){
+        for (String todo : todoList) {
             if (writer != null) {
                 writer.println(todo);
             }
         }
-        if(writer!= null) writer.close();
+        if (writer != null) writer.close();
     }
 
-    public void writeToConsole(){
+    public void writeToConsole() {
         System.out.println("List: ");
-        for(String todo : todoList){
+        for (String todo : todoList) {
             System.out.println(todo);
         }
         System.out.println();
     }
 
-    public void removeItem(int idx){
-        todoList.remove(idx);
+    public void removeItem(String todo) {
+        todoList.remove(todo);
+    }
+
+    public void addItem(String todo) {
+        todoList.add(todo);
+        System.out.println("todoList.add:" + todo);
+    }
+
+    public int len() {
+      return todoList.size();
     }
 }
