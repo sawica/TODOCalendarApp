@@ -63,43 +63,35 @@ public class TodoPanel extends JPanel {
 
     }
     public void removeItems(){
-//        for (JCheckBox checkBox:checkBoxes){
-//            todoPanel.remove(checkBox);
-//        }
-        System.out.println("remove, m: " + month + " y: " + year);
-        for(JCheckBox checkBox : checkBoxes){
+        int checkCounter=checkBoxes.size();
+        for(int i =checkCounter-1 ; i >=0; i--){
+            JCheckBox checkBox = checkBoxes.get(i);
             if(checkBox.isSelected()){
-                System.out.println(checkBox.getText());
-                String temp = checkBox.getText();
-                list.removeItem(temp);;
+                if (list.todoList.contains(checkBox.getText())) list.removeItem(checkBox.getText());;
                 todoPanel.remove(checkBox);
                 checkBoxes.remove(checkBox);
             }
         }
-        list.writeToFile();
+        todoPanel.updateUI();
     }
     public void refresh(){
-        System.out.println("refresh");
+        for(JCheckBox checkBox : checkBoxes){
+            if(checkBox.isSelected()){
+                checkBox.setSelected(false);
+            }
+        }
+        writeTodoList();
+        todoPanel.updateUI();
     }
     public void save(){
         list.writeToFile();
-        System.out.println("save");
     }
     public void addItem(String todo){
-        System.out.println("przed add: " + list.len());
         list.addItem(todo);
-        System.out.println("po add: " + list.len());
         list.writeToFile();
         JCheckBox checkBox = new JCheckBox(todo);
         checkBoxes.add(checkBox);
         todoPanel.add(checkBox);
-    }
-    public void clearList() {
-        todoPanel.removeAll();
-        checkBoxes.removeAll(checkBoxes);
-        label = new JLabel();
-        label.setText("TODO " + month + " " + year + " List");
-        label.setAlignmentY(Component.TOP_ALIGNMENT);
-        todoPanel.add(label);
+        todoPanel.updateUI();
     }
 }

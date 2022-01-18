@@ -55,49 +55,6 @@ public class ButtonPanel extends JPanel implements ActionListener{
         buttonPanel.add(close);
         add(buttonPanel);
 
-//        JPanel buttonPanel = new JPanel();
-//        GridLayout grid = new GridLayout(7, 1, 10, 10);
-//        buttonPanel.setLayout(grid);
-//
-//        buttonPanel.add(createRigidArea(new Dimension(0, 70)));
-//
-//        buttonPanel.add(newTODO);
-//
-//        buttonPanel.add(saveTODO);
-//
-//        buttonPanel.add(refreshTODO);
-//
-//        buttonPanel.add(removeTODO);
-//
-//        buttonPanel.add(createRigidArea(new Dimension(0, 100)));
-//
-//        buttonPanel.add(close);
-//        add(buttonPanel);
-//        buttonPanel.setLayout(new GridBagLayout());
-//        GridBagConstraints gbc = new GridBagConstraints();
-//        gbc.fill = GridBagConstraints.VERTICAL;
-//        gbc.gridx = 0;
-//        gbc.gridy = 0;
-//        buttonPanel.add(createRigidArea(new Dimension(0, 70)), gbc);
-//        gbc.gridx = 0;
-//        gbc.gridy = 1;
-//        buttonPanel.add(newTODO, gbc);
-//        gbc.gridx = 0;
-//        gbc.gridy = 2;
-//        buttonPanel.add(saveTODO, gbc);
-//        gbc.gridx = 0;
-//        gbc.gridy = 3;
-//        buttonPanel.add(refreshTODO, gbc);
-//        gbc.gridx = 0;
-//        gbc.gridy = 4;
-//        buttonPanel.add(removeTODO, gbc);
-//        gbc.gridx = 0;
-//        gbc.gridy = 5;
-//        buttonPanel.add(createRigidArea(new Dimension(0, 100)), gbc);
-//        gbc.gridx = 0;
-//        gbc.gridy = 6;
-//        buttonPanel.add(close, gbc);
-//        add(buttonPanel);
     }
 
     @Override
@@ -111,30 +68,24 @@ public class ButtonPanel extends JPanel implements ActionListener{
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }
-            setBackground(Color.GREEN);
         }
 
 
         else if(source == saveTODO){
             myView.todoPanel.save();
-            setBackground(Color.BLUE);
+
         }
 
         else if(source == refreshTODO){
-            myView.todoPanel.writeTodoList();
             myView.todoPanel.refresh();
-            setBackground(Color.RED);
         }
 
         else if(source == removeTODO){
             myView.todoPanel.removeItems();
-            myView.todoPanel.writeTodoList();
-            setBackground(Color.ORANGE);
         }
 
 
         else if(source == close){
-            setBackground(Color.CYAN);
             System.exit(0);
         }
 

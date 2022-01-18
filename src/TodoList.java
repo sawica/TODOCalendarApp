@@ -17,12 +17,7 @@ public class TodoList {
         this.todoList = new LinkedList<>();
 
         readFromFile();
-        //      writeToConsole();
-//        todoList.add("upiec ciasto");
-//        todoList.add("ubrać choinke");
-//        writeToFile();
-//        readFromFile();
-        writeToConsole();
+//        writeToConsole();
 
     }
 
@@ -68,7 +63,6 @@ public class TodoList {
 
     public void addItem(String todo) {
         todoList.add(todo);
-        System.out.println("todoList.add:" + todo);
     }
 
     public int len() {

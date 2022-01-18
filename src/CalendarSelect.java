@@ -67,12 +67,10 @@ public class CalendarSelect extends JPanel implements ActionListener {
             JComboBox combo = (JComboBox) source;
             MONTH = combo.getSelectedIndex();
             month = months[MONTH];
-            System.out.println(MONTH);
         }
         else if (source == yearsList){
             JComboBox combo = (JComboBox) source;
             YEAR = (Integer) combo.getSelectedItem();
-            System.out.println(YEAR);
         }
 
             calendar = new CreateCalendar(YEAR, MONTH);
@@ -81,10 +79,8 @@ public class CalendarSelect extends JPanel implements ActionListener {
             calendarView.calendarTable.writeCalendar(calendar);
 
             MyView view = (MyView) calendarView.getParent();
-            //Component myFrame = calendarView.getParent();
             view.todoPanel.writeTodoList(month, YEAR);
+            view.updateUI();
 
     }
-
-
 }
